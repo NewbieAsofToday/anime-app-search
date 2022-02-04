@@ -34,12 +34,12 @@ const ImageSlider = () => {
               <Overlay>
                 <div className='slider-details'>
                   <div className='titles'>
-                    <h2>{item.attributes.titles.en_jp}</h2>
+                    <h1>{item.attributes.titles.en_jp}</h1>
                     <h3>{item.attributes.titles.ja_jp}</h3>
                   </div>
                   <div className='synopsis'>
                     <h4>Synopsis:</h4>
-                    <p>{item.attributes.synopsis.slice(0, 300)}</p>
+                    <p>{item.attributes.synopsis.slice(0, 320)}...</p>
                   </div>
                   <a
                     href={`https://www.youtube.com/watch?v=${item.attributes.youtubeVideoId}`}
@@ -66,9 +66,7 @@ const Wrapper = styled.div`
   .slider {
   }
   .title {
-    position: absolute;
-    z-index: 1;
-    padding: 0 2rem;
+    margin: 0.2rem 0;
   }
 `;
 const AnimeSlider = styled.div`
@@ -97,7 +95,6 @@ const Overlay = styled.div`
   }
   transition: 0.4s ease;
   .slider-details {
-    margin-top: 2rem;
     padding: 2rem;
     top: 0;
     left: 0;
