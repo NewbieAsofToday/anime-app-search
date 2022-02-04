@@ -6,7 +6,7 @@ const ImageSlider = () => {
   useEffect(() => {
     const fetchUrl = fetch("https://kitsu.io/api/edge/trending/anime")
       .then((resp) => resp.json())
-      .then((data) => setAnime(data.data.slice(0, 10)));
+      .then((data) => setAnime(data.data.slice(0, 7)));
   }, []);
   console.log(anime);
   const settings = {
@@ -15,6 +15,8 @@ const ImageSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SampleNextArrow />,
   };
   return (
     <Wrapper>
@@ -30,7 +32,23 @@ const ImageSlider = () => {
                 alt={item.attributes.coverImage.original}
               />
               <Overlay>
-                <div className='slider-details'>Details</div>
+                <div className='slider-details'>
+                  <div className='titles'>
+                    <h2>{item.attributes.titles.en_jp}</h2>
+                    <h3>{item.attributes.titles.ja_jp}</h3>
+                  </div>
+                  <div className='synopsis'>
+                    <h4>Synopsis:</h4>
+                    <p>{item.attributes.synopsis.slice(0, 300)}</p>
+                  </div>
+                  <a
+                    href={`https://www.youtube.com/watch?v=${item.attributes.youtubeVideoId}`}
+                    target='_blank'
+                    className='trailer-btn'
+                  >
+                    <h2>Watch Trailer</h2>
+                  </a>
+                </div>
               </Overlay>
             </AnimeSlider>
           );
@@ -40,7 +58,7 @@ const ImageSlider = () => {
   );
 };
 const Wrapper = styled.div`
-  width: 90vw;
+  width: 95vw;
   margin: 0 auto;
   height: 30vh;
   position: relative;
@@ -79,16 +97,48 @@ const Overlay = styled.div`
   }
   transition: 0.4s ease;
   .slider-details {
+    margin-top: 2rem;
     padding: 2rem;
     top: 0;
     left: 0;
-    color: white;
-    width: 50%;
+    width: 70%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
+    .trailer-btn {
+      background-color: yellow;
+      outline: none;
+      border: none;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      transition: 0.4s ease;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
   }
 `;
 export default ImageSlider;
+//arrow
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "flex",
+        position: "absolute",
+        zIndex: "2",
+        borderRadius: "2rem",
+        alignItems: "center",
+        background: "#333",
+        padding: "1.5rem",
+        justifyContent: "center",
+      }}
+      onClick={onClick}
+    />
+  );
+}
