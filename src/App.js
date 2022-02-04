@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
+import AnimeList from "./components/AnimeList";
+const App = () => {
+  const [search, setSearch] = useState("");
+  const [animeList, setAnimeList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-function App() {
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetchAnime(search);
+  };
+  const fetchAnime = async (query) => {
+    const searchAnime = await fetch(
+      `https://api.jikan.moe/v3/search/anime?q=${query}&order_by=title&sort=asc&limit=10`
+    ).then((res) => res.json());
+    setAnimeList(searchAnime.results);
+    setLoading(true);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar
+        handleSearch={handleSearch}
+        search={search}
+        setSearch={setSearch}
+      />
+      {loading ? (
+        <AnimeList animeList={animeList} />
+      ) : (
+        <h1>
+          Search for an Anime?
+          {/* slider */}
+        </h1>
+      )}
+    </>
   );
-}
+};
 
 export default App;
