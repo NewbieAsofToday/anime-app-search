@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import AnimeList from "./components/AnimeList";
+import ImageSlider from "./components/ImageSlider";
 const App = () => {
   const [search, setSearch] = useState("");
   const [animeList, setAnimeList] = useState([]);
@@ -24,14 +25,7 @@ const App = () => {
         search={search}
         setSearch={setSearch}
       />
-      {loading ? (
-        <AnimeList animeList={animeList} />
-      ) : (
-        <h1>
-          Search for an Anime?
-          {/* slider */}
-        </h1>
-      )}
+      {loading ? <AnimeList animeList={animeList} /> : <ImageSlider />}
     </>
   );
 };
