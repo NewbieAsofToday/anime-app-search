@@ -8,7 +8,6 @@ const ImageSlider = () => {
       .then((resp) => resp.json())
       .then((data) => setAnime(data.data.slice(0, 7)));
   }, []);
-  console.log(anime);
   const settings = {
     infinite: true,
     speed: 1000,
@@ -58,9 +57,9 @@ const ImageSlider = () => {
   );
 };
 const Wrapper = styled.div`
+  min-width: 520px;
   width: 95vw;
   margin: 0 auto;
-  height: 30vh;
   position: relative;
   color: white;
   .slider {

@@ -22,6 +22,7 @@ const Navbar = ({ handleSearch, search, setSearch }) => {
   );
 };
 const Wrapper = styled.div`
+  min-width: 520px;
   display: flex;
   align-items: center;
   justify-content: space-between;
