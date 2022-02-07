@@ -65,6 +65,7 @@ const Wrapper = styled.div`
     padding-left: 20px;
     height: 100%;
     width: 40%;
+    min-width: 500px;
     .banner-description {
       opacity: 1;
     }

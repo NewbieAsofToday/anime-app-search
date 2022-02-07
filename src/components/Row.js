@@ -9,11 +9,13 @@ const Row = ({ topAnime, title, isLarge }) => {
       <div className='card-list'>
         {topAnime.map((item) => (
           <div className='image-container' key={item.mal_id}>
-            <img
-              className={isLarge ? "large anime-image" : "anime-image"}
-              src={item.images.webp.large_image_url}
-              alt=''
-            />
+            <a href={item.url} target='_blank'>
+              <img
+                className={isLarge ? "large anime-image" : "anime-image"}
+                src={item.images.webp.large_image_url}
+                alt=''
+              />
+            </a>
           </div>
         ))}
       </div>
@@ -21,6 +23,7 @@ const Row = ({ topAnime, title, isLarge }) => {
   );
 };
 const Wrapper = styled.div`
+  cursor: pointer;
   color: white;
   margin-left: 20px;
   .card-list {

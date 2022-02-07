@@ -4,12 +4,14 @@ import AnimeList from "./components/AnimeList";
 import ImageSlider from "./components/ImageSlider";
 import styled from "styled-components";
 import Row from "./components/Row";
-import Banner from "./components/Banner";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [search, setSearch] = useState("");
   const [animeList, setAnimeList] = useState([]);
   const [topAnime, setTopAnime] = useState([]);
+  const [topManga, setTopManga] = useState([]);
+  const [upcoming, setUpcoming] = useState([]);
   const [loading, setLoading] = useState(false);
 
   //========search anime
@@ -24,11 +26,21 @@ const App = () => {
     setAnimeList(searchAnime.results);
     setLoading(true);
   };
-  //=====================Schedule anime
+  //=====================
   useEffect(() => {
     const fetchUrl = fetch("https://api.jikan.moe/v4/top/anime")
       .then((resp) => resp.json())
       .then((data) => setTopAnime(data.data.slice(0, 10)));
+  }, []);
+  useEffect(() => {
+    const fetchUrl = fetch("https://api.jikan.moe/v4/top/manga")
+      .then((resp) => resp.json())
+      .then((data) => setTopManga(data.data.slice(0, 10)));
+  }, []);
+  useEffect(() => {
+    const fetchUrl = fetch("https://api.jikan.moe/v4/seasons/upcoming")
+      .then((resp) => resp.json())
+      .then((data) => setUpcoming(data.data.slice(0, 10)));
   }, []);
   return (
     <>
@@ -43,12 +55,13 @@ const App = () => {
         <>
           <ImageSlider />
           <>
-            <Row isLarge title='Recommended' topAnime={topAnime} />
-            <Row title='Top Rated' topAnime={topAnime} />
-            <Row title='Upcoming' topAnime={topAnime} />
+            <Row isLarge title='Top Anime' topAnime={topAnime} />
+            <Row title='Upcoming' topAnime={upcoming} />
+            <Row title='Top Manga' topAnime={topManga} />
           </>
         </>
       )}
+      <Footer />
     </>
   );
 };
