@@ -45,6 +45,7 @@ const Wrapper = styled.div`
       font-size: 1.2rem;
     }
     .logo {
+      margin-left: 1rem;
       color: white;
       font-size: 2rem;
     }

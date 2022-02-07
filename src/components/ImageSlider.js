@@ -21,6 +21,7 @@ const ImageSlider = () => {
       <div className='title'></div>
       <Slider {...settings} className='slider'>
         {anime.map((item) => {
+          console.log(item);
           return (
             <AnimeSlider key={item.id}>
               <header
@@ -36,7 +37,13 @@ const ImageSlider = () => {
                     {item.attributes.titles.en_jp}
                   </h1>
                   <div className='banner-buttons'>
-                    <button className='banner-button'>Trailer</button>
+                    <a
+                      href={`https://www.youtube.com/watch?v=${item.attributes.youtubeVideoId}`}
+                      target='_blank'
+                      className='banner-button'
+                    >
+                      Trailer
+                    </a>
                   </div>
 
                   <h1 className='banner-description'>

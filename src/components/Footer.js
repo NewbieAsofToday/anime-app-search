@@ -7,6 +7,8 @@ const Footer = () => {
         <p>
           Copyright © 2022 Anisearch | Euger Bonete. All right reserved.
           <br />
+          This data was provided from jikan.moe API
+          <br />
           This website is made using React.JS and styled-components.
         </p>
       </footer>
@@ -14,6 +16,7 @@ const Footer = () => {
   );
 };
 const Wrapper = styled.div`
+  text-align: center;
   height: 10vh;
   display: flex;
   align-items: center;
