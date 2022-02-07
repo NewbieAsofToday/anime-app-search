@@ -1,14 +1,20 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+import AnimeCard from "./AnimeCard";
 
 const AnimeList = ({ animeList }) => {
-  console.log(animeList);
+  const data = animeList.slice(0, 10);
+  console.log(data);
   return (
-    <div>
-      {animeList.map((item) => {
-        return <div>{item.title}</div>;
+    <Wrapper>
+      {data.map((item) => {
+        return <h1>hello world</h1>;
       })}
-    </div>
+    </Wrapper>
   );
 };
-
+const Wrapper = styled.div`
+  display: flex;
+  margin: 2rem;
+`;
 export default AnimeList;

@@ -14,8 +14,7 @@ const ImageSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SampleNextArrow />,
+    arrows: false,
   };
   return (
     <Wrapper>
@@ -24,29 +23,28 @@ const ImageSlider = () => {
         {anime.map((item) => {
           return (
             <AnimeSlider key={item.id}>
-              <img
-                src={item.attributes.coverImage.original}
-                alt={item.attributes.coverImage.original}
-              />
-              <Overlay>
-                <div className='slider-details'>
-                  <div className='titles'>
-                    <h1>{item.attributes.titles.en_jp}</h1>
-                    <h3>{item.attributes.titles.ja_jp}</h3>
+              <header
+                className='banner'
+                style={{
+                  backgroundSize: "cover",
+                  backgroundImage: `url(${item.attributes.coverImage.original})`,
+                  backgroundPosition: "center center",
+                }}
+              >
+                <div className='banner-contents'>
+                  <h1 className='banner-title'>
+                    {item.attributes.titles.en_jp}
+                  </h1>
+                  <div className='banner-buttons'>
+                    <button className='banner-button'>Trailer</button>
                   </div>
-                  <div className='synopsis'>
-                    <h4>Synopsis:</h4>
-                    <p>{item.attributes.synopsis.slice(0, 320)}...</p>
-                  </div>
-                  <a
-                    href={`https://www.youtube.com/watch?v=${item.attributes.youtubeVideoId}`}
-                    target='_blank'
-                    className='trailer-btn'
-                  >
-                    <h2>Watch Trailer</h2>
-                  </a>
+
+                  <h1 className='banner-description'>
+                    {item.attributes.description.slice(0, 350)}...
+                  </h1>
                 </div>
-              </Overlay>
+                <div className='banner-fadeBottom'></div>
+              </header>
             </AnimeSlider>
           );
         })}
@@ -55,84 +53,73 @@ const ImageSlider = () => {
   );
 };
 const Wrapper = styled.div`
-  min-width: 520px;
-  width: 95vw;
-  margin: 0 auto;
-  position: relative;
-  color: white;
-  .slider {
+  .banner {
+    color: white;
+    object-fit: contain;
+    height: 448px;
   }
-  .title {
-    margin: 0.2rem 0;
+  .banner-contents {
+    background: rgba(0, 0, 0, 0.5);
+    margin-left: 30px;
+    padding-top: 60px;
+    padding-left: 20px;
+    height: 100%;
+    width: 40%;
+    .banner-description {
+      opacity: 1;
+    }
+  }
+  .banner-contents:hover {
+    .banner-description {
+      opacity: 1;
+    }
+  }
+  .banner-title {
+    font-size: 3rem;
+    font-weight: 800;
+    padding-bottom: 0.3rem;
+  }
+  .banner-description {
+    width: 55rem;
+    line-height: 1.3;
+    padding-top: 1rem;
+    font-size: 0.8rem;
+    max-width: 360px;
+  }
+
+  .banner-button {
+    cursor: pointer;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    border-radius: 0.2vw;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-right: 1rem;
+    padding-top: 0.5rem;
+    background-color: rgba(51, 51, 51, 0.5);
+    padding-bottom: 0.5rem;
+  }
+  .banner-button:hover {
+    color: #000;
+    background: #e6e6e6;
+    transition: all 0.2s;
+  }
+  .banner-fadeBottom {
+    position: relative;
+    height: 7.4rem;
+    background-image: linear-gradient(
+      180deg,
+      transparent,
+      rgba(37, 37, 37, 0.61),
+      #111
+    );
+    bottom: -9rem;
   }
 `;
 const AnimeSlider = styled.div`
-  position: relative;
-  img {
-    width: 100%;
-    height: 45vh;
-    object-fit: cover;
-    border-radius: 4px;
-    object-fit: cover;
-    box-shadow: rgb(0 0 0/69%) 0px 26px 30px -10px,
-      rgb(0 0 0/ 73%) 0px 16px 10px -10px;
-    min-width: 500px;
-  }
+  height: 4rem;
 `;
-const Overlay = styled.div`
-  position: absolute;
-  background: rgba(0, 0, 0, 0.75);
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  &:hover {
-    opacity: 1;
-  }
-  transition: 0.4s ease;
-  .slider-details {
-    padding: 2rem;
-    top: 0;
-    left: 0;
-    width: 70%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    .trailer-btn {
-      background-color: yellow;
-      outline: none;
-      border: none;
-      padding: 1rem 1.5rem;
-      margin-bottom: 1rem;
-      transition: 0.4s ease;
-      &:hover {
-        transform: scale(1.2);
-      }
-    }
-  }
-`;
+
 export default ImageSlider;
-//arrow
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: "flex",
-        position: "absolute",
-        zIndex: "2",
-        borderRadius: "2rem",
-        alignItems: "center",
-        background: "#333",
-        padding: "1.5rem",
-        justifyContent: "center",
-      }}
-      onClick={onClick}
-    />
-  );
-}

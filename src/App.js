@@ -3,7 +3,8 @@ import Navbar from "./components/Navbar";
 import AnimeList from "./components/AnimeList";
 import ImageSlider from "./components/ImageSlider";
 import styled from "styled-components";
-import Top from "./components/Top";
+import Row from "./components/Row";
+import Banner from "./components/Banner";
 
 const App = () => {
   const [search, setSearch] = useState("");
@@ -27,7 +28,7 @@ const App = () => {
   useEffect(() => {
     const fetchUrl = fetch("https://api.jikan.moe/v4/top/anime")
       .then((resp) => resp.json())
-      .then((data) => setTopAnime(data.data.slice(0, 20)));
+      .then((data) => setTopAnime(data.data.slice(0, 10)));
   }, []);
   return (
     <>
@@ -36,14 +37,18 @@ const App = () => {
         search={search}
         setSearch={setSearch}
       />
-      <Wrapper>
-        {loading ? <AnimeList animeList={animeList} /> : <ImageSlider />}
-        {loading ? (
-          <AnimeList animeList={animeList} />
-        ) : (
-          <Top topAnime={topAnime} />
-        )}
-      </Wrapper>
+      {loading ? (
+        <AnimeList animeList={animeList} />
+      ) : (
+        <>
+          <ImageSlider />
+          <>
+            <Row isLarge title='Recommended' topAnime={topAnime} />
+            <Row title='Top Rated' topAnime={topAnime} />
+            <Row title='Upcoming' topAnime={topAnime} />
+          </>
+        </>
+      )}
     </>
   );
 };
