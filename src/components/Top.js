@@ -6,9 +6,7 @@ import Slider from "react-slick";
 
 //
 const settings = {
-  className: "center",
   infinite: true,
-  centerPadding: "60px",
   slidesToShow: 5,
   swipeToSlide: true,
   responsive: [
@@ -74,10 +72,11 @@ const Top = ({ topAnime }) => {
   );
 };
 const Wrapper = styled.div`
-  color: white;
-  padding: 0 2rem;
+color: white;
+  padding:0 2rem;
   .card-list {
     min-width: 500px;
+   padding-left: 2rem;
   } 
     img {
       height: 300px;

@@ -50,5 +50,6 @@ const App = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  /* overflow: hidden; */
 `;
 export default App;
