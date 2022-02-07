@@ -2,89 +2,52 @@ import React from "react";
 import styled from "styled-components";
 //
 import Slider from "react-slick";
-//
 
-//
-const settings = {
-  infinite: true,
-  slidesToShow: 5,
-  swipeToSlide: true,
-  responsive: [
-    {
-      breakpoint: 1228,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 5,
-        infinite: true,
-        dots: true,
-      },
-    },
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 6,
-        infinite: true,
-        dots: true,
-      },
-    },
-    {
-      breakpoint: 720,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 6,
-        infinite: true,
-        dots: true,
-      },
-    },
-    {
-      breakpoint: 530,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 6,
-        infinite: true,
-        dots: true,
-      },
-    },
-  ],
-};
-
-//
 const Top = ({ topAnime }) => {
   console.log(topAnime);
   return (
     <Wrapper>
       <h1>Top Anime</h1>
       <div className='card-list'>
-        <Slider {...settings}>
-          {topAnime.map((item) => (
-            <div className='image-container' key={item.mal_id}>
-              <img
-                className='anime-image'
-                src={item.images.webp.image_url}
-                alt=''
-              />
-            </div>
-          ))}
-        </Slider>
+        {topAnime.map((item) => (
+          <div className='image-container' key={item.mal_id}>
+            <img
+              className='anime-image'
+              src={item.images.webp.large_image_url}
+              alt=''
+            />
+          </div>
+        ))}
       </div>
     </Wrapper>
   );
 };
 const Wrapper = styled.div`
-color: white;
-  padding:0 2rem;
+  width: 100vw;
+
   .card-list {
-    min-width: 500px;
-   padding-left: 2rem;
-  } 
-    img {
-      height: 300px;
-      @media (max-width: 720px) {
-        height: 250px;
-        width: 150px;
-      }
-    }
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 10px;
+  }
+  .card-list::-webkit-scrollbar {
+    display: none;
+  }
+  .card-list {
+  }
+
+  .anime-image {
+    object-fit: contain;
+    width: 100%;
+    min-width: 200px;
+    max-height: 200px;
+    /* margin-right: 5px; */
+    transition: transform 450ms;
+  }
+  .anime-image:hover {
+    transform: scale(1.08);
+    opacity: 1;
   }
 `;
 export default Top;

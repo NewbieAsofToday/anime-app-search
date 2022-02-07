@@ -27,7 +27,7 @@ const App = () => {
   useEffect(() => {
     const fetchUrl = fetch("https://api.jikan.moe/v4/top/anime")
       .then((resp) => resp.json())
-      .then((data) => setTopAnime(data.data.slice(0, 9)));
+      .then((data) => setTopAnime(data.data.slice(0, 20)));
   }, []);
   return (
     <>

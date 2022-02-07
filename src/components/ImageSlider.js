@@ -19,9 +19,7 @@ const ImageSlider = () => {
   };
   return (
     <Wrapper>
-      <div className='title'>
-        <h1>Trending Anime</h1>
-      </div>
+      <div className='title'></div>
       <Slider {...settings} className='slider'>
         {anime.map((item) => {
           return (
@@ -72,7 +70,7 @@ const AnimeSlider = styled.div`
   position: relative;
   img {
     width: 100%;
-    height: 50vh;
+    height: 45vh;
     object-fit: cover;
     border-radius: 4px;
     object-fit: cover;
