@@ -22,9 +22,10 @@ const Navbar = ({ handleSearch, search, setSearch }) => {
   );
 };
 const Wrapper = styled.div`
+  z-index: 1;
   position: sticky;
   top: 0;
-  min-width: 520px;
+  min-width: 550px;
   display: flex;
   align-items: center;
   justify-content: space-between;

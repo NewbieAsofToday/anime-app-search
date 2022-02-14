@@ -4,17 +4,18 @@ import AnimeCard from "./AnimeCard";
 
 const AnimeList = ({ animeList }) => {
   const data = animeList.slice(0, 10);
-  console.log(data);
   return (
     <Wrapper>
       {data.map((item) => {
-        return <h1>hello world</h1>;
+        return <AnimeCard item={item} key={item.mal_id} />;
       })}
     </Wrapper>
   );
 };
 const Wrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 2rem;
+  color: white;
 `;
 export default AnimeList;

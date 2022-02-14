@@ -24,11 +24,17 @@ const Wrapper = styled.div`
   background: #333;
   color: white;
   padding: 3rem 0;
+  min-width: 550px;
   footer {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.3rem;
+  }
+  @media (max-width: 776px) {
+    footer {
+      font-size: 0.8rem;
+    }
   }
 `;
 export default Footer;

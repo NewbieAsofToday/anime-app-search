@@ -1,37 +1,41 @@
 import React from "react";
-// import styled from "styled-components";
-import { experimentalStyled as styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import styled from "styled-components";
 const AnimeCard = ({ item }) => {
+  console.log(item);
+  const { image_url, title, url } = item;
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-      >
-        {Array.from(Array(6)).map((_, index) => (
-          <Grid item xs={2} sm={4} md={4} key={index}>
-            <Item>xs=2</Item>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+    <Container>
+      <a href={url} target='_blank'>
+        <img className='image' src={image_url} alt={image_url} />
+        <div className='title'>{title}</div>
+      </a>
+    </Container>
   );
 };
-// const Card = styled.div`
-//   background: #555;
-//   height: 400px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `;
+const Container = styled.div`
+  height: 350px;
+  width: 250px;
+  cursor: pointer;
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .image {
+    height: 250px;
+    width: 200px;
+    border-radius: 10px;
+    transition: 0.4s;
+  }
+  .image:hover {
+    transform: translateY(-5px);
+  }
+  .title {
+    color: white;
+    width: 250px;
+    font-weight: 600;
+  }
+`;
 export default AnimeCard;

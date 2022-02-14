@@ -26,6 +26,7 @@ const Wrapper = styled.div`
   cursor: pointer;
   color: white;
   margin-left: 20px;
+  min-width: 500px;
   .card-list {
     display: flex;
     overflow-x: scroll;

@@ -21,7 +21,6 @@ const ImageSlider = () => {
       <div className='title'></div>
       <Slider {...settings} className='slider'>
         {anime.map((item) => {
-          console.log(item);
           return (
             <AnimeSlider key={item.id}>
               <header
@@ -60,6 +59,7 @@ const ImageSlider = () => {
   );
 };
 const Wrapper = styled.div`
+  min-width: 550px;
   .banner {
     color: white;
     object-fit: contain;
@@ -67,7 +67,6 @@ const Wrapper = styled.div`
   }
   .banner-contents {
     background: rgba(0, 0, 0, 0.5);
-    margin-left: 30px;
     padding-top: 60px;
     padding-left: 20px;
     height: 100%;
